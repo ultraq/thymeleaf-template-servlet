@@ -30,35 +30,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * A simple servlet that spins up a Thymeleaf template engine, and uses it to
+ * A simple servlet that spins up a Thymeleaf template engine and uses it to
  * serve Thymeleaf templates as requested by the URL.
  * 
  * @author Emanuel Rabina
  */
 @WebServlet(
-	name = "StandaloneThymeleafServlet",
+	name = "ThymeleafTemplateServlet",
 	initParams = {
 		@WebInitParam(
-			name = StandaloneThymeleafServlet.INIT_PARAM_PREFIX,
+			name = ThymeleafTemplateServlet.INIT_PARAM_PREFIX,
 			value = ""),
 		@WebInitParam(
-			name = StandaloneThymeleafServlet.INIT_PARAM_SUFFIX,
+			name = ThymeleafTemplateServlet.INIT_PARAM_SUFFIX,
 			value = ""),
 		@WebInitParam(
-			name = StandaloneThymeleafServlet.INIT_PARAM_TEMPLATEMODE,
+			name = ThymeleafTemplateServlet.INIT_PARAM_TEMPLATEMODE,
 			value = "HTML5")
 	},
 	urlPatterns = {
 		"*.html"
 	}
 )
-public class StandaloneThymeleafServlet extends HttpServlet {
+public class ThymeleafTemplateServlet extends HttpServlet {
 
 	public static final String INIT_PARAM_PREFIX       = "prefix";
 	public static final String INIT_PARAM_SUFFIX       = "suffix";
 	public static final String INIT_PARAM_TEMPLATEMODE = "templateMode";
 
-	private TemplateEngine templateengine;
+	private TemplateEngine templateEngine;
 
 	/**
 	 * Initialize the Thymeleaf template engine.
@@ -68,14 +68,14 @@ public class StandaloneThymeleafServlet extends HttpServlet {
 
 		ServletConfig config = this.getServletConfig();
 
-		ServletContextTemplateResolver templateresolver = new ServletContextTemplateResolver();
-		templateresolver.setPrefix(config.getInitParameter(INIT_PARAM_PREFIX));
-		templateresolver.setSuffix(config.getInitParameter(INIT_PARAM_SUFFIX));
-		templateresolver.setTemplateMode(config.getInitParameter(INIT_PARAM_TEMPLATEMODE));
-		templateresolver.setCacheable(false);
+		ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
+		templateResolver.setPrefix(config.getInitParameter(INIT_PARAM_PREFIX));
+		templateResolver.setSuffix(config.getInitParameter(INIT_PARAM_SUFFIX));
+		templateResolver.setTemplateMode(config.getInitParameter(INIT_PARAM_TEMPLATEMODE));
+		templateResolver.setCacheable(false);
 
-		templateengine = new TemplateEngine();
-		templateengine.setTemplateResolver(templateresolver);
+		templateEngine = new TemplateEngine();
+		templateEngine.setTemplateResolver(templateResolver);
 	}
 
 	/**
@@ -89,10 +89,8 @@ public class StandaloneThymeleafServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws IOException {
 
-		String templatepath = request.getRequestURI().substring(
-				this.getServletContext().getServletContextName().length() + 2);
-
-		templateengine.process(templatepath,
+		String templatePath = request.getRequestURI().substring(request.getContextPath().length());
+		templateEngine.process(templatePath,
 				new WebContext(request, response, getServletContext()),
 				response.getWriter());
 	}
