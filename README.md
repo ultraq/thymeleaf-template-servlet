@@ -15,7 +15,7 @@ name.
 Installation
 ------------
 
-Minimum of Java 7 and Thymeleaf 2.1 required.
+Minimum of Java 7 and Thymeleaf 3 required.
 
 ### Standalone distribution
 Copy the JAR from [the latest release bundle](https://github.com/ultraq/thymeleaf-template-servlet/releases),

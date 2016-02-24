@@ -39,7 +39,7 @@ project.year     = '2014'
 dependencies {
 	compile('javax.servlet:javax.servlet-api:3.0.1', provided)
 	compile(
-		'org.codehaus.groovy:groovy:2.4.5',
-		'org.thymeleaf:thymeleaf:2.1.4.RELEASE'
+		'org.codehaus.groovy:groovy:2.4.6',
+		'org.thymeleaf:thymeleaf:3.0.0.BETA02'
 	)
 }
