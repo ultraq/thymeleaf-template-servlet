@@ -40,6 +40,6 @@ dependencies {
 	compile('javax.servlet:javax.servlet-api:3.0.1', provided)
 	compile(
 		'org.codehaus.groovy:groovy:2.4.6',
-		'org.thymeleaf:thymeleaf:3.0.0.BETA02'
+		'org.thymeleaf:thymeleaf:3.0.0.BETA03'
 	)
 }
