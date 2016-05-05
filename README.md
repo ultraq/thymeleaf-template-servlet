@@ -2,7 +2,6 @@
 Thymeleaf Template Servlet
 ==========================
 
-[![Build Status](https://travis-ci.org/ultraq/thymeleaf-template-servlet.svg?branch=thymeleaf-3.0)](https://travis-ci.org/ultraq/thymeleaf-template-servlet)
 [![GitHub Release](https://img.shields.io/github/release/ultraq/thymeleaf-template-servlet.svg?maxAge=3600)](https://github.com/ultraq/thymeleaf-template-servlet/releases/latest)
 [![Maven Central](https://img.shields.io/maven-central/v/nz.net.ultraq.thymeleaf/thymeleaf-template-servlet.svg?maxAge=3600)](http://search.maven.org/#search|ga|1|g%3A%22nz.net.ultraq.thymeleaf%22%20AND%20a%3A%22thymeleaf-template-servlet%22)
 [![License](https://img.shields.io/github/license/ultraq/thymeleaf-template-servlet.svg?maxAge=2592000)](https://github.com/ultraq/thymeleaf-template-servlet/blob/master/LICENSE.txt)
