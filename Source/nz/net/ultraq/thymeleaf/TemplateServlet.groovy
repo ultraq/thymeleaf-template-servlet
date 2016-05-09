@@ -16,6 +16,8 @@
 
 package nz.net.ultraq.thymeleaf
 
+import static nz.net.ultraq.thymeleaf.TemplateServletConstants.*
+
 import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.WebContext
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver
@@ -37,15 +39,11 @@ import javax.servlet.http.HttpServletResponse
 	initParams = [
 		@WebInitParam(name = INIT_PARAM_PREFIX, value = ''),
 		@WebInitParam(name = INIT_PARAM_SUFFIX, value = ''),
-		@WebInitParam(name = INIT_PARAM_TEMPLATEMODE, value = 'HTML5')
+		@WebInitParam(name = INIT_PARAM_TEMPLATEMODE, value = 'HTML')
 	],
 	urlPatterns = [ '*.html' ]
 )
-class ThymeleafTemplateServlet extends HttpServlet {
-
-	static final String INIT_PARAM_PREFIX       = 'prefix'
-	static final String INIT_PARAM_SUFFIX       = 'suffix'
-	static final String INIT_PARAM_TEMPLATEMODE = 'templateMode'
+class TemplateServlet extends HttpServlet {
 
 	private TemplateEngine templateEngine
 
@@ -70,13 +68,11 @@ class ThymeleafTemplateServlet extends HttpServlet {
 	 * 
 	 * @param request
 	 * @param response
-	 * @throws IOException
 	 */
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-		throws IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
-		String templatePath = request.requestURI.substring(request.contextPath.length())
+		def templatePath = request.requestURI.substring(request.contextPath.length())
 		templateEngine.process(templatePath, new WebContext(request, response, servletContext), response.writer)
 	}
 }
